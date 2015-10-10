@@ -40,30 +40,7 @@ app.get('/create', function(request, response){
 
 app.get('/read', function(request, response){
   q = request.query;
-  var matchedCol = {};
-  console.log(unauthed);
-  var count = 0;
-  var retVal;
-  console.log("before whilst")
-  asyncd.whilst(
-    function(){ f = (count < 600 && unauthed); return f},
-    function(callback) {
-      console.log("in Callback")
-      count++;
-      setTimeout(callback, 100);
-      },
-      function(err){
-        retVal = "false";
-        console.log(unauthed);
-        if(!unauthed){
-          db.users.find({userID : q.userID, website: q.website}, function(err, docs){
-            retVal = docs;
-            unauthed = true;
-            response.json(retVal);
-            return 0;
-          });
-        }
-        })
+  db.users.find();
 })
 
 app.get('/update', function(request,response){
