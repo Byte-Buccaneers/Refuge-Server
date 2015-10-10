@@ -41,11 +41,7 @@ app.get('/create', function(request, response){
 app.get('/read', function(request, response){
     q = request.query;
     var retVal;
-    db.users.find({userID : q.userID, website: q.website}, function(err, docs){
-        retVal = docs;
-        unauthed = true;
-        response.json(retVal);
-    });
+    response.json(db.users.find())
 })
 
 app.get('/update', function(request,response){
