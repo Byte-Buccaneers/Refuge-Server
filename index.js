@@ -93,7 +93,7 @@ app.get('/updateuser/:number/:long1/:long2/:lat1/:lat2',function(request,respons
 
 	users.update(
 		{"number":p.number},
-		{$set{"loc" : pair}},
+		{$set:{"loc" : pair}},
 		function(err,doc){
 			if(err == null)
 				response.json(p.number);
