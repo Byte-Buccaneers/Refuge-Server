@@ -93,10 +93,10 @@ app.get('/updateuser/:number/:long1/:long2/:lat1/:lat2',function(request,respons
 
 	users.update(
 		{"number":p.number},
-		{"loc" : pair },
+		{"loc" : pair},
 		function(err,doc){
 			if(err == null)
-				response.send("1");
+				response.json(pair);
 			else
 				response.send("0");
 		}
