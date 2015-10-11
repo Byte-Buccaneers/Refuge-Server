@@ -6,10 +6,15 @@ var express = require('express'),
     stdio = require('stdio'),
     asyncd = require('async');
 
-var mongojs = require('mongojs');
-var mongoUri = 'mongodb://user:user@ds031477.mongolab.com:31477/hackathons';
-var db = mongojs(mongoUri, ['users','destinations']);
-
+var cradle = require('cradle');
+var couchUri = 'https://khe2015.iriscouch.com/';
+var connection = new(cradle.Connection)(couchUri, 5984, {
+    cache: true,
+    raw: false,
+    forceSave: true
+});
+var dbPeople = new(connection.database('people');
+var dbGroup = new(connection.database('groups'))
 
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
@@ -40,8 +45,11 @@ app.get('/create', function(request, response){
 
 app.get('/read', function(request, response){
     q = request.query;
-    var retVal;
-    response.json(db.users.find())
+    var retVal = "none";
+    db.users.find({phonenumber: "5556667777"},function(err, docs){
+      console.log(docs);
+      response.json(docs);
+    })
 })
 
 app.get('/update', function(request,response){
