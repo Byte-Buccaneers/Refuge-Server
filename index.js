@@ -6,23 +6,24 @@ var express = require('express'),
     stdio = require('stdio'),
     asyncd = require('async'),
 	  MongoClient = require('mongodb').MongoClient,
-    assert = require('assert');
+    assert = require('assert'),
+    url = require('url');
 
 //Global variable defined in MongoClient.connect
 var dbglobal = "";
 var users = "";
 var groups = "";
 // Connection URL
-var url = 'mongodb://b:b@ds035674.mongolab.com:35674/byte-buccaneers';
+var murl = 'mongodb://b:b@ds035674.mongolab.com:35674/byte-buccaneers';
 
 // Use connect method to connect to the Server
-MongoClient.connect(url, function(err, db) {
+MongoClient.connect(murl, function(err, db) {
   assert.equal(null, err);
   console.log("Connected correctly to server <3");
   dbglobal = db;
   users = dbglobal.collection('users');
   groups = dbglobal.collection('groups');
-  
+
 });
 
 //App Configuration
@@ -39,6 +40,10 @@ app.get('/testme',function(request,response){
 		response.send(docs);
 	});
 });
+
+app.get('/updatePoll',function(request,response){
+  q = request.query;
+})
 
 function createGeoPair(long1,long2,lat1,lat2){
 	var longS = long1+ '.' +long2;
@@ -85,7 +90,7 @@ app.get('/creategroup/:owner/:long1/:long2/:lat1/:lat2',function(request,respons
 app.get('/updateuser/:number/:long1/:long2/:lat1/:lat2',function(request,response){
 	var p = request.params;
 	var pair = createGeoPair(p.long1 , p.long2 , p.lat1 , p.lat2);
-	
+
 	users.update(
 		{"number":p.number},
 		{"loc" : pair },
