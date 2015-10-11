@@ -8,6 +8,7 @@ var express = require('express'),
 	  MongoClient = require('mongodb').MongoClient,
     assert = require('assert');
 
+<<<<<<< HEAD
 var mongoUri = 'mongodb://b:b@ds041633.mongolab.com:41633/second'
 
 // Connection URL
@@ -35,6 +36,8 @@ var findDocuments = function(db, callback) {
 
 
 //App Configuration
+=======
+>>>>>>> origin/master
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
 
@@ -42,6 +45,7 @@ app.get('/', function(request, response) {
   response.render('index.html');
 });
 
+<<<<<<< HEAD
 //
 // app.get('/create', function(request, response){
 //   q = request.query;
@@ -102,6 +106,8 @@ app.get('/', function(request, response) {
 //     console.log(q);
 // });
 
+=======
+>>>>>>> origin/master
 
 server.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
