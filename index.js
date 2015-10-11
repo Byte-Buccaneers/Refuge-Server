@@ -26,6 +26,7 @@ MongoClient.connect(url, function(err, db) {
 });
 
 //App Configuration
+refs/remotes/origin/master
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
 
@@ -97,6 +98,7 @@ app.get('/updateuser/:number/:long1/:long2/:lat1/:lat2',function(request,respons
 		}
 	);
 });
+
 
 server.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
